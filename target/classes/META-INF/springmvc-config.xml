@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:component-scan base-package="com.test" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<!--排除@Service注解的类 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	<!-- <context:component-scan base-package="com.test.controller" />
+	<context:component-scan base-package="com.test.service" />
+	<context:component-scan base-package="com.test.dao" />
+	需要添加component-scan以使formatter生效
+	<context:component-scan base-package="com.test.util" /> -->
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 使用Commons FileUpload处理文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+     	<property name="maxInMemorySize" value="10485760" />
+     	<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	<!-- 使用Servlet3及更新版本 -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />-->
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/i18n/labels</value>
+				<value>/WEB-INF/i18n/validation_messages</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- formatter只能接收String类型 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="com.test.util.DateFormatter">
+					<constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+	
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<mvc:resources mapping="/*.html" location="/" />
+	<mvc:resources mapping="/image/*.jpg" location="/WEB-INF/image/" />
+	<mvc:resources mapping="/file/*.*" location="/WEB-INF/file/" />
+	
+</beans>
