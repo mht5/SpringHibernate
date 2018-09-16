@@ -10,10 +10,10 @@ public interface MyService {
 
 	void saveUser(User user);
 
-	User findUser(long id);
+	User findUser(String id);
 
 	void updateUser(User user);
 
-	void deleteUser(long id);
+	void deleteUser(String id);
 	
 }

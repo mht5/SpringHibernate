@@ -73,7 +73,7 @@
 	</aop:config> -->
 	
 	<!-- 确定aop注解生效  -->
-	<aop:aspectj-autoproxy />
+	<!-- <aop:aspectj-autoproxy /> -->
 	
 	<!-- 声明式AOP -->
 	<!-- <bean id="myService" class="com.test.service.MyServiceImpl"></bean>

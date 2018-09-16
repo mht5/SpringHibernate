@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>List User</title>
+		<title>List Book</title>
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script> -->
@@ -20,47 +20,29 @@
 			<thead>
 		    	<tr>
 		      		<th>ID</th>
-		      		<th>user name</th>
 		      		<th>name</th>
-		      		<th>birthday</th>
-		      		<th>gender</th>
-		      		<th>image</th>
-		      		<th>file</th>
+		      		<th>publication date</th>
+		      		<th>price</th>
+		      		<th>storage</th>
 		      		<th>&nbsp;</th>
 		    	</tr>
 		  	</thead>
 		  	<tbody>
-				<c:if test="${userList.size() < 1}">
-					<a href="add-user">Add</a>
+				<c:if test="${bookList.size() < 1}">
+					<a href="add-book">Add</a>
 				</c:if>
-				<c:if test="${userList.size() >= 1}">
-			  		<c:forEach items="${userList}" var="user">
+				<c:if test="${bookList.size() >= 1}">
+			  		<c:forEach items="${bookList}" var="book">
 				    	<tr class="active">
-				      		<td>${user.id}</td>
-				      		<td>${user.username}</td>
-				      		<td>${user.name}</td>
-				      		<td>${fn:substring(user.birthday, 0, 10)}</td>
-				      		<td>${user.gender==1 ? "Male" : "Female"}</td>
+				      		<td>${book.id}</td>
+				      		<td>${book.name}</td>
+				      		<td>${fn:substring(book.publicationDate, 0, 10)}</td>
+				      		<td>${book.price}</td>
+				      		<td>${book.storage}</td>
 				      		<td>
-				      			<c:if test="${user.imageUrl != null}">
-				      				<img src="${user.imageUrl}" width="200px" />
-				      			</c:if>
-				      			<c:if test="${user.imageUrl == null}">
-				      				Not provided
-				      			</c:if>
-				      		</td>
-				      		<td>
-				      			<c:if test="${user.fileUrl != null}">
-				      				<a href="download?filePath=${user.fileUrl}">download</a>
-				      			</c:if>
-				      			<c:if test="${user.fileUrl == null}">
-				      				Not provided
-				      			</c:if>
-				      		</td>
-				      		<td>
-				      			<a href="edit-user/${user.id}">Edit</a>&nbsp;&nbsp;
-				      			<a href="delete-user/${user.id}">Delete</a>&nbsp;&nbsp;
-				      			<a href="add-user">Add</a>
+				      			<a href="edit-book/${book.id}">Edit</a>&nbsp;&nbsp;
+				      			<a href="delete-book/${book.id}">Delete</a>&nbsp;&nbsp;
+				      			<a href="add-book">Add</a>
 				      		</td>
 				    	</tr>
 			  		</c:forEach>

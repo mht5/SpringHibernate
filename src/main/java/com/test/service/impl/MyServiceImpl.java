@@ -1,4 +1,4 @@
-package com.test.service;
+package com.test.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.test.dao.UserDAO;
 import com.test.entity.User;
+import com.test.service.MyService;
 
 @Service
 public class MyServiceImpl implements MyService {
@@ -28,13 +29,13 @@ public class MyServiceImpl implements MyService {
 		userDao.save(user);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS, rollbackFor=Exception.class)
 	@Override
-	public User findUser(long id) {
+	public User findUser(String id) {
 		return userDao.find(id);
 	}
 
-	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS, rollbackFor=Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	@Override
 	public void updateUser(User user) {
 		userDao.update(user);
@@ -42,7 +43,7 @@ public class MyServiceImpl implements MyService {
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	@Override
-	public void deleteUser(long id) {
+	public void deleteUser(String id) {
 		userDao.delete(id);
 	}
 

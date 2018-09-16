@@ -1,4 +1,4 @@
-package com.test.dao;
+package com.test.dao.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.test.dao.UserDAO;
 import com.test.entity.User;
 
 @Repository
@@ -27,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User find(long id) {
+	public User find(String id) {
 		return sessionFactory.getCurrentSession().get(User.class, id);
 	}
 
@@ -37,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(session.get(User.class, id));
 	}

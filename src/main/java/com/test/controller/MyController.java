@@ -85,14 +85,18 @@ public class MyController {
     }
 
 	@RequestMapping(value = "/edit-user/{id}")
-	public String editUser(Model model, @PathVariable long id) {
+	public String editUser(Model model, @PathVariable String id) {
 		User user = myService.findUser(id);
 		model.addAttribute("user", user);
 		return "edit_user";
 	}
 	
 	@RequestMapping(value = "/update-user")
-    public String updateUser(HttpServletRequest request, @ModelAttribute User user) {
+    public String updateUser(HttpServletRequest request, @ModelAttribute @Valid User user, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+    		return "redirect:/edit-user/" + user.getId();
+        }
+		
 		user.setImageUrl(null);
 		user.setFileUrl(null);
 		
@@ -111,7 +115,7 @@ public class MyController {
     }
 	
 	@RequestMapping(value = "/delete-user/{id}")
-	public String deleteUser(Model model, @PathVariable long id) {
+	public String deleteUser(Model model, @PathVariable String id) {
 		myService.deleteUser(id);
 		return "redirect:/list-user";
 	}

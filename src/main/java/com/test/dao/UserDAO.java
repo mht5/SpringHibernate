@@ -10,10 +10,10 @@ public interface UserDAO {
 
 	void save(User user);
 
-	User find(long id);
+	User find(String id);
 
 	void update(User user);
 
-	void delete(long id);
+	void delete(String id);
 	
 }
