@@ -40,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(session.get(User.class, id));
+		session.delete(session.load(User.class, id));
 	}
 
 }

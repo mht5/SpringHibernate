@@ -7,44 +7,44 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.test.dao.UserDAO;
-import com.test.entity.User;
-import com.test.service.MyService;
+import com.test.dao.OrderDAO;
+import com.test.entity.Order;
+import com.test.service.OrderService;
 
 @Service
-public class MyServiceImpl implements MyService {
+public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
-	private UserDAO userDao;
+	private OrderDAO orderDao;
 
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	@Override
-	public List<User> listUser() {
-		return userDao.list();
+	public List<Order> listOrder() {
+		return orderDao.list();
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public void saveUser(User user) {
-		userDao.save(user);
+	public void saveOrder(Order order) {
+		orderDao.save(order);
 	}
 
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	@Override
-	public User findUser(String id) {
-		return userDao.find(id);
+	public Order findOrder(String id) {
+		return orderDao.find(id);
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public void updateUser(User user) {
-		userDao.update(user);
+	public void updateOrder(Order order) {
+		orderDao.update(order);
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public void deleteUser(String id) {
-		userDao.delete(id);
+	public void deleteOrder(String id) {
+		orderDao.delete(id);
 	}
 
 }

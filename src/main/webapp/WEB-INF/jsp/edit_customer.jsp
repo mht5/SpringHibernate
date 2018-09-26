@@ -24,6 +24,10 @@
 					<label for="name">name: </label>
 					<form:input id="name" path="name" />
 				</p>
+				<p>
+					<label for="balance">balance: </label>
+					<form:input id="balance" path="balance" />
+				</p>
 				<p id="buttons">
 					<input id="reset" type="reset" value="Reset">
 					<input type="submit" type="submit" value="Update Customer">

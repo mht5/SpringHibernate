@@ -24,8 +24,8 @@ public class BookController {
 	
 	@RequestMapping(value = "/list-book")
     public String listBook(HttpServletRequest request, Model model) {
-		List<Book> BookList = bookService.listBook();
-		model.addAttribute("bookList", BookList);
+		List<Book> bookList = bookService.listBook();
+		model.addAttribute("bookList", bookList);
 		return "list_book";
     }
 	

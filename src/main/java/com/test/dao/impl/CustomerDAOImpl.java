@@ -40,7 +40,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(session.get(Customer.class, id));
+		session.delete(session.load(Customer.class, id));
 	}
 
 }

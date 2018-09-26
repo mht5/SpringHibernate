@@ -17,31 +17,31 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookDAO bookDao;
 
-	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS, rollbackFor=Exception.class)
+	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	@Override
 	public List<Book> listBook() {
 		return bookDao.list();
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public void saveBook(Book book) {
 		bookDao.save(book);
 	}
 
-	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS, rollbackFor=Exception.class)
+	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	@Override
 	public Book findBook(String id) {
 		return bookDao.find(id);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public void updateBook(Book book) {
 		bookDao.update(book);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public void deleteBook(String id) {
 		bookDao.delete(id);

@@ -18,7 +18,7 @@
 		<c:url var="formAction" value="/save-user" />
 		<form:form commandName="user" enctype="multipart/form-data" method="post" action="${formAction}">
 			<fieldset>
-				<legend>Add a user</legend>
+				<legend>Add an user</legend>
 				<p>
 					<label for="username">user name: </label>
 					<form:input id="username" path="username" />

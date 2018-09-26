@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>List Customer</title>
+		<title>List Order</title>
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
 		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script> -->
@@ -16,33 +16,44 @@
 		    	<a href="<%=request.getContextPath()%>/index.html" class="navbar-brand mr-2">Home</a>
 		  	</section>
 		</header><br/>
+		<c:if test="${param.msg != null}">
+			<p style="color: red">
+				${param.msg}
+			</p>
+		</c:if>
 		<table class="table table-striped table-hover">
 			<thead>
 		    	<tr>
 		      		<th>ID</th>
-		      		<th>name</th>
-		      		<th>balance</th>
+		      		<th>customer name</th>
+		      		<th>book name</th>
+		      		<th>count</th>
+		      		<th>price</th>
+		      		<th>address</th>
 		      		<th>&nbsp;</th>
 		    	</tr>
 		  	</thead>
 		  	<tbody>
-				<c:if test="${customerList.size() < 1}">
-					<a href="add-customer">Add</a>
+				<c:if test="${orderList.size() < 1}">
+					<a href="add-order">Add</a>
 				</c:if>
-				<c:if test="${customerList.size() >= 1}">
-			  		<c:forEach items="${customerList}" var="customer">
+				<c:if test="${orderList.size() >= 1}">
+			  		<c:forEach items="${orderList}" var="order">
 				    	<tr class="active">
-				      		<td>${customer.id}</td>
-				      		<td>${customer.name}</td>
-				      		<td>${customer.balance}</td>
+				      		<td>${order.id}</td>
+				      		<td>${order.customer.name}</td>
+				      		<td>${order.book.name}</td>
+				      		<td>${order.count}</td>
+				      		<td>${order.price}</td>
+				      		<td>${order.address}</td>
 				      		<td>
-				      			<a href="edit-customer/${customer.id}">Edit</a>&nbsp;&nbsp;
-				      			<a href="delete-customer/${customer.id}">Delete</a>&nbsp;&nbsp;
-				      			<a href="add-customer">Add</a>
+				      			<a href="edit-order/${order.id}">Edit</a>&nbsp;&nbsp;
+				      			<a href="delete-order/${order.id}">Delete</a>&nbsp;&nbsp;
+				      			<a href="add-order">Add</a>
 				      		</td>
 				    	</tr>
 			  		</c:forEach>
-			  	</c:if>
+				</c:if>
 		  	</tbody>
 		</table>
 	</body>

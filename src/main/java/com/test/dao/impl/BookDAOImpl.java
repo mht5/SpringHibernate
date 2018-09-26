@@ -40,7 +40,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(session.get(Book.class, id));
+		session.delete(session.load(Book.class, id));
 	}
 
 }

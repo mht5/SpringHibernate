@@ -1,15 +1,19 @@
 package com.test.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -28,13 +32,27 @@ public class Book {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date publicationDate;
-	
+
+    @Max(1000)
+    @Min(0)
 	@Type(type="double")
 	@Column(name="price", nullable=true, columnDefinition="decimal(5,2)")
 	private Double price;
 	
 	@Max(999)
+	@Min(0)
 	private int storage;
+
+    @OneToMany(targetEntity=Order.class, mappedBy="book")
+    private Set<Order> orders = new HashSet<Order>();
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 
 	public String getId() {
 		return id;

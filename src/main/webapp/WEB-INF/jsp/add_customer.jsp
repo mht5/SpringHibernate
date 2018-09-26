@@ -24,6 +24,11 @@
 					<form:input id="name" path="name" />
 					<form:errors path="name" cssClass="text-error" />
 				</p>
+				<p>
+					<label for="balance">balance: </label>
+					<form:input id="balance" path="balance" />
+					<form:errors path="balance" cssClass="text-error" />
+				</p>
 				<p id="buttons">
 					<input id="reset" type="reset" value="Reset">
 					<input type="submit" type="submit" value="Add Customer">
