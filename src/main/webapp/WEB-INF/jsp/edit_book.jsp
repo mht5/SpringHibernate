@@ -16,7 +16,7 @@
 		  	</section>
 		</header><br/>
 		<c:url var="formAction" value="/update-book" />
-		<form:form commandName="book" enctype="multipart/form-data" method="post" action="${formAction}">
+		<form:form commandName="book" method="post" action="${formAction}">
 			<fieldset>
 				<legend>Edit book</legend>
 				<form:hidden path="id" />

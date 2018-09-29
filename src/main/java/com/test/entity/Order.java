@@ -13,6 +13,7 @@ import javax.validation.constraints.Min;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="t_order")
@@ -31,7 +32,8 @@ public class Order {
     @Max(999)
     @Min(1)
     private Integer count;
-    
+
+    @Length(min=1, max=255)
     @Column(name="address", nullable=false)
     private String address;
 

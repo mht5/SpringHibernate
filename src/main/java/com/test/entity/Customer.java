@@ -25,7 +25,7 @@ public class Customer {
     @GeneratedValue(generator="myuuid")
     private String id;
     
-    @Length(min=2, max=255)
+    @Length(min=1, max=255)
     @Column(name="name", unique=true, nullable=false)
     private String name;
     

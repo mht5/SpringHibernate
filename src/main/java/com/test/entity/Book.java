@@ -17,6 +17,7 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="t_book")
@@ -26,7 +27,8 @@ public class Book {
     @GenericGenerator(name="myuuid", strategy="uuid")
     @GeneratedValue(generator="myuuid")
 	private String id;
-	
+
+    @Length(min=1, max=30)
 	@Column(name="name", length=30, unique=true, nullable=false)
 	private String name;
 	

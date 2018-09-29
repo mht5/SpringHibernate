@@ -21,7 +21,7 @@
 			</p>
 		</c:if>
 		<c:url var="formAction" value="/save-order" />
-		<form:form commandName="order" enctype="multipart/form-data" method="post" action="${formAction}">
+		<form:form commandName="order" method="post" action="${formAction}">
 			<fieldset>
 				<legend>Add an order</legend>
 				<p>
